@@ -1,8 +1,19 @@
 import express from "express";
-import { PORT } from "./config.js";
+import bookRoutes from "./routes/book.routes.js";
+import cors from "cors";
 
 const app = express();
 
-app.listen(PORT, () => {
-    console.log(`Listening on ${PORT}`);
-})
+//you can also use 
+app.use(cors()) //which all type of request
+// app.use(cors({
+//     origin: "http://localhost:3000",
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type']
+// }));
+
+app.use(express.json());
+
+app.use(bookRoutes);
+
+export default app;
